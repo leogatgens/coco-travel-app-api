@@ -17,12 +17,10 @@ public class PostHandler implements RequestHandler<APIGatewayProxyRequestEvent, 
 
     public APIGatewayProxyResponseEvent handleRequest(final APIGatewayProxyRequestEvent input, final Context context) {
         String requestBody = input.getBody();
-
         Gson gson = new Gson();
 
         Map<String,String> userDetails = gson.fromJson(requestBody,Map.class);
         userDetails.put("userId" , UUID.randomUUID().toString() );
-
 
         Map returnedValue = new HashMap();
         returnedValue.put("firstName",userDetails.get("firstname"));

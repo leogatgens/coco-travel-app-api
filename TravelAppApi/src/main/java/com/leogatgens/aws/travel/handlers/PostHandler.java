@@ -1,6 +1,7 @@
 package com.leogatgens.aws.travel.handlers;
 
 import com.amazonaws.services.lambda.runtime.Context;
+import com.amazonaws.services.lambda.runtime.LambdaLogger;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyRequestEvent;
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyResponseEvent;
@@ -16,6 +17,10 @@ import java.util.UUID;
 public class PostHandler implements RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent> {
 
     public APIGatewayProxyResponseEvent handleRequest(final APIGatewayProxyRequestEvent input, final Context context) {
+        LambdaLogger logger = context.getLogger();
+
+        logger.log("Handling HTTP Post request for the /reviews Api endpoint");
+
         String requestBody = input.getBody();
         Gson gson = new Gson();
 
